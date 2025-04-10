@@ -1,4 +1,6 @@
 import { QueryProvider } from "@/shared/providers/query-provider";
+import { ThemeProvider } from "@/shared/providers/theme-provider";
+import { ThemeToggle } from "@/shared/ui/theme-toggle";
 import type { Metadata } from "next";
 import { Toaster } from "sonner"
 import "./globals.css";
@@ -11,10 +13,17 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({children}: {children: React.ReactNode}) => {
   return (
-		<html lang="en" className={"dark"}>
+		<html lang="en" suppressHydrationWarning>
       <body>
         <QueryProvider>
-          {children}
+        	<ThemeProvider 
+         		attribute={"class"}
+          	defaultTheme={"system"}
+           	enableSystem
+         	>
+           	<ThemeToggle />
+          	{children}
+         	</ThemeProvider>
         </QueryProvider>
         <Toaster position={"top-right"}/>
       </body>
