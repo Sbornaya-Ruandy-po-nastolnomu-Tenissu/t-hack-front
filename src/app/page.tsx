@@ -8,7 +8,6 @@ import {
 	SidebarGroup,
 	SidebarFooter
 } from "@/components/ui/sidebar"
-import { ThemeToggle } from "@/shared/ui/theme-toggle";
 
 const MainPage = async () => {
   return (
