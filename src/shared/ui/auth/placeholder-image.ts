@@ -1,0 +1,1 @@
+export var placeholder = "/placeholder2.jpg"

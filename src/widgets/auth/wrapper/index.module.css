@@ -1,0 +1,23 @@
+
+
+@media (width >= 64rem) {
+	.content {
+		position: absolute;
+		left: 0;
+		transition: all .3s cubic-bezier(.22,.61,.36,1);
+	}
+	
+	.content.swapped {
+		translate: 100%;
+	}
+	
+	.image {
+		position: absolute;
+		right: 0;
+		transition: all .3s cubic-bezier(.22,.61,.36,1);
+	}
+	
+	.image.swapped {
+		translate: -100%;
+	}
+}

@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "T-hack",
   description: "",
-  icons: ["icon.svg"]
+  icons: ["/icon.svg"]
 };
 
 const RootLayout = async ({children}: {children: React.ReactNode}) => {
@@ -21,7 +21,6 @@ const RootLayout = async ({children}: {children: React.ReactNode}) => {
           	defaultTheme={"system"}
            	enableSystem
          	>
-           	<ThemeToggle />
           	{children}
          	</ThemeProvider>
         </QueryProvider>
