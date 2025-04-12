@@ -1,0 +1,15 @@
+
+
+.brandWrapper {
+	container-type: inline-size;
+	container-name: brand;
+	height: fit-content;
+}
+
+@container brand (width < 200px) {
+	.brandContent {
+		display: none;
+		height: 0;
+		padding: 0;
+	}
+}

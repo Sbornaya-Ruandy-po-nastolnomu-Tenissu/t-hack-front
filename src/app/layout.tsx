@@ -1,6 +1,5 @@
 import { QueryProvider } from "@/shared/providers/query-provider";
 import { ThemeProvider } from "@/shared/providers/theme-provider";
-import { ThemeToggle } from "@/shared/ui/theme-toggle";
 import type { Metadata } from "next";
 import { Toaster } from "sonner"
 import "./globals.css";
