@@ -30,12 +30,6 @@ import {
 import Link from "next/link"
 import { userStore } from "@/entities/user"
 
-type User = {
-	name: string,
-	email: string,
-	avatar: string
-}
-
 export function NavUser() {
   const { isMobile } = useSidebar()
 	const user = userStore.getState().user 
@@ -49,8 +43,8 @@ export function NavUser() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >	
-           		<div>
-              	<IconLogin stroke={1} />
+           		<div className="ml-1">
+								<IconLogin stroke={1} />
              	</div>
               <IconDotsVertical className="ml-auto size-4" />
             </SidebarMenuButton>

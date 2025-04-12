@@ -1,15 +1,21 @@
 
 
-.brandWrapper {
+.wrapper {
 	container-type: inline-size;
 	container-name: brand;
-	height: fit-content;
+	height: 100%;
+}
+.brand {
+	transition: all .5s;
 }
 
-@container brand (width < 200px) {
-	.brandContent {
-		display: none;
+@container brand (width < 287px) {
+	.brand {
 		height: 0;
+		opacity: 0;
 		padding: 0;
+	}
+	.donut {
+		display: none;
 	}
 }

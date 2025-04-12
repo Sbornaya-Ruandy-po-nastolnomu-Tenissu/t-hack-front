@@ -18,6 +18,7 @@ import {
   SidebarMenu,
   SidebarMenuItem
 } from "@/components/ui/sidebar"
+import { DonutChart } from "@/widgets/donut-chart"
 import styles from "./index.module.css"
 import clsx from "clsx"
 
@@ -53,10 +54,10 @@ var data = {
 
 export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+		<Sidebar collapsible="icon" {...props} className={styles.wrapper}>
       <SidebarHeader className="p-0">
-				<SidebarMenu className={clsx("overflow-hidden", styles.brandWrapper)}>
-					<SidebarMenuItem className={clsx("overflow-hidden p-3 ml-1", styles.brandContent)}>
+				<SidebarMenu className={"overflow-hidden"}>
+					<SidebarMenuItem className={clsx("overflow-hidden p-3 ml-1", styles.brand)}>
 						<Link href="/" className={"text-xl font-semibold"}>
               Money Flow
             </Link>
@@ -65,6 +66,9 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <div className="h-full mt-auto mb-auto border-y-1 flex flex-col justify-center">
+        	<DonutChart className={clsx(styles.donut)} />
+        </div>
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

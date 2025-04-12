@@ -46,7 +46,7 @@ export const AiInput = ({ setNewMsg }: { setNewMsg: (v: string) => void }) => {
 	return (
 		<div className={clsx(styles.input)}>
 			<div className={clsx(styles.wrapper)}>
-	      <Textarea placeholder="Type your message here." id="message" className="overflow-scroll" 
+	      <Textarea placeholder="Type your message here..." className="overflow-scroll" 
 							onChange={handleChange} value={query} onKeyUp={handleEnter}/>
 				<SendHorizonal className={styles.send} onClick={handleClick}/>
      	</div>

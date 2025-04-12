@@ -8,12 +8,30 @@
 	height: 100%;
 	padding: 0 1rem;
 	display: flex;
-	flex-direction: column;
 	overflow: hidden;
+	padding-top: 1rem;
 	padding-bottom: 6rem;
 }
 
 .chat > ul {
+	display: flex;
+	flex-direction: column;
 	overflow: scroll;
 	height: 100%;
+	width: 100%
+} 
+
+.chat > ul > li {
+	display: flex;
+	height: fit-content;
+	overflow: hidden;
+	word-break: keep-all;
+}
+
+
+.chat > ul > li:nth-child(odd) {
+	margin-left: auto;
+}
+.chat > ul > li:nth-child(even) {
+	margin-right: auto;
 }
