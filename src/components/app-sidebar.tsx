@@ -45,7 +45,7 @@ var data = {
     },
 		{
 			title: "AI ассистент",
-			url: "/ai-assistent",
+			url: "/ai-assistant",
 			icon: <Sparkles />,
 		},
   ]
@@ -67,7 +67,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={null} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )

@@ -1,0 +1,27 @@
+.input {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	gap: .5rem;
+}
+
+.wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.send {
+	position: absolute;
+	right: 1rem;
+	cursor: pointer;
+	transition: all .2s;
+}
+.send:hover {
+	filter: brightness(0.5);
+}

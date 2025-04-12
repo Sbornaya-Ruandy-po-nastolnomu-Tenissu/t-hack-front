@@ -4,7 +4,7 @@ import axios from "axios";
 
 export async function login(email: string, password: string, point: string) {
 	try {
-		const { data } = await axios.post(API_URL + `/auth/${point}`, { email, password })
+		const { data } = await axios.post(API_URL + `/auth/${point}`, { login: email, password })
 		
 		const { user, token } = data
 		userStore.getState().login(user, token)

@@ -10,7 +10,7 @@ type Responce = {
 
 export const httpClient = axios.create({
   withCredentials: false,
-  baseURL: API_URL + "/api",
+  baseURL: API_URL,
 })
 
 httpClient.interceptors.request.use((config) => {

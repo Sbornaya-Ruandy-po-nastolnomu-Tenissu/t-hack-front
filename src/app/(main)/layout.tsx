@@ -6,8 +6,6 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import { useFetch } from "@/shared/api/queryClient"
-import { userStore } from "@/entities/user"
 
 const MainLayout = async ({ children }: { children: React.ReactNode }) => {
 	
