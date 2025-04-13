@@ -22,6 +22,8 @@ import {
 } from "@/components/ui/select"
 import { toast } from "sonner"
 import { useFetch } from "@/shared/api/queryClient"
+import { userStore } from "@/entities/user"
+import httpClient from "@/shared/api/httpClient"
 
 
 type Account = {
@@ -33,6 +35,8 @@ type Account = {
 
 const AddTransaction = ({ children }: { children: React.ReactNode}) => {
 
+	const user = userStore.getState().user
+	const [amount, setAmount] = useState("")
 	const [selectAccount, setAccount] = useState("") 
 	const [category, setCategory] = useState("")
 	const [cashback, setCashback] = useState("")
@@ -41,13 +45,18 @@ const AddTransaction = ({ children }: { children: React.ReactNode}) => {
 		method: "get"
 	})
 	
-	const handleSubmit = () => {
-		if (!category || !cashback || !selectAccount) {
+	const handleSubmit = async () => {
+		if (!category || !cashback || !selectAccount || !amount) {
 			toast.error("Все поля обязательные")
 			return
 		}
-		
+		const res = await httpClient.post("/transactions/create", { 
+			account_id: selectAccount,
+			amount: amount
+	 })
 	}
+	
+	if (!user) return <></>
 	
 	return (
   	<Dialog>
@@ -59,16 +68,27 @@ const AddTransaction = ({ children }: { children: React.ReactNode}) => {
           <DialogTitle>Создание транзакции</DialogTitle>
         </DialogHeader>
         <div className="flex items-center space-x-2">
+        	<Input placeholder={"Введите сумму"} required value={amount} onChange={(e: any) => setAmount(e.target.value)}/>
         	<Input placeholder={"Введите категорию"} required value={category} onChange={(e: any) => setCategory(e.target.value)}/>
         	<Input placeholder={"Введите кэшбэк"} required value={cashback} onChange={(e: any) => setCashback(e.target.value)}/>
-					<Select value={selectAccount} onValueChange={setAccount}>
-						<SelectTrigger >
-							<SelectValue placeholder={"Мои счета"} />
-			      </SelectTrigger>
-						<SelectContent>
-							<AccountsList myAccounts={data}/>
-						</SelectContent>
-					</Select>
+					{ (data === undefined || data.length === 0) ? 
+						(<AddAccount>
+							<Button>
+								Создать
+							</Button>
+						</AddAccount>) : null
+					}
+					
+					{(data !== undefined && data.length > 0) ?
+						(<Select value={selectAccount} onValueChange={setAccount}>
+							<SelectTrigger >
+								<SelectValue placeholder={"Мои счета"} />
+							</SelectTrigger>
+							<SelectContent>
+								<AccountsList myAccounts={data as Account[]} />
+							</SelectContent>
+						</Select>) : null
+					}
         </div>
         <DialogFooter className="sm:justify-start">
           <Button type="button" variant="secondary" onClick={handleSubmit}>
@@ -80,31 +100,14 @@ const AddTransaction = ({ children }: { children: React.ReactNode}) => {
 	)
 }
 
-const AccountsList = ({ myAccounts }: { myAccounts: Account[] | undefined }) => {
-	if (myAccounts === undefined) return (
-		<AddAccount>
-			<SelectItem
-				value={"Создать"}
-			>
-					Создать
-			</SelectItem>
-		</AddAccount>
-	)
+const AccountsList = ({ myAccounts }: { myAccounts: Account[] }) => {
 	return (
 		<SelectGroup>
-			{myAccounts.length > 0 ? myAccounts.map((account, index) =>
+			{myAccounts.map((account, index) =>
 				<SelectItem
-					value={account.name}
+					value={String(account.id)}
 					key={index}
 				>{account.name}</SelectItem>
-			) : (
-				<AddAccount>
-					<SelectItem
-						value={"Создать"}
-					>
-							Создать
-					</SelectItem>
-				</AddAccount>
 			)}
 		</SelectGroup>
 	)

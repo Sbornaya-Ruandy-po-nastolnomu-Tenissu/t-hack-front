@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/select"
 import { toast } from "sonner"
 import { useFetch } from "@/shared/api/queryClient"
+import httpClient from "@/shared/api/httpClient"
 
 
 type Account = {
@@ -29,55 +30,6 @@ type Account = {
 	name: string, 
 	balance: number
 }
-
-const AddAccount = ({ children }: { children: React.ReactNode}) => {
-
-	const [selectAccount, setAccount] = useState("") 
-	const [name, setName] = useState("")
-	const [cashback, setCashback] = useState("")
-	const { data } = useFetch<Account[]>(["accounts"], {
-		endpoint: "/accounts/my",
-		method: "get"
-	})
-	
-	const handleSubmit = () => {
-		if (!name || !cashback || !selectAccount) {
-			toast.error("Все поля обязательные")
-			return
-		}
-		
-	}
-	
-	return (
-  	<Dialog>
-      <DialogTrigger asChild>
-				{ children }
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
-          <DialogTitle>Создание счета</DialogTitle>
-        </DialogHeader>
-        <div className="flex items-center space-x-2">
-        	<Input placeholder={"Введите имя счета"} required value={name} onChange={(e: any) => setName(e.target.value)}/>
-					<Select value={selectAccount} onValueChange={setAccount}>
-						<SelectTrigger >
-							<SelectValue placeholder={"Мои счета"} />
-			      </SelectTrigger>
-						<SelectContent>
-							<AccountsTypes />
-						</SelectContent>
-					</Select>
-        </div>
-        <DialogFooter className="sm:justify-start">
-          <Button type="button" variant="secondary" onClick={handleSubmit}>
-           	Создать
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-	)
-}
-
 const accountsTypes = [
     // DEP subtypes
     { parent_code: 'DEP', code: 'DEP', name: 'Депозитный счёт' },
@@ -115,12 +67,63 @@ const accountsTypes = [
     { parent_code: 'BNP', code: 'BNP', name: 'Долями' }
 ]
 
+const AddAccount = ({ children }: { children: React.ReactNode}) => {
+
+	const [selectAccount, setAccount] = useState("") 
+	const [balance, setBalance] = useState("") 
+	const [name, setName] = useState("")
+	
+	const handleSubmit = async () => {
+		if (!name || !selectAccount || !balance) {
+			toast.error("Все поля обязательные")
+			return
+		}
+		
+		console.log(selectAccount)
+		const res = await httpClient.post("/accounts/create", {
+		})
+		
+		
+	}
+	
+	return (
+  	<Dialog>
+      <DialogTrigger asChild>
+				{ children }
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Создание счета</DialogTitle>
+        </DialogHeader>
+        <div className="flex items-center space-x-2">
+        	<Input placeholder={"Введите имя счета"} required value={name} onChange={(e: any) => setName(e.target.value)}/>
+        	<Input placeholder={"Введите баланс"} required value={balance} onChange={(e: any) => setBalance(e.target.value)}/>
+					<Select value={selectAccount} onValueChange={setAccount}>
+						<SelectTrigger >
+							<SelectValue placeholder={"Мои счета"} />
+			      </SelectTrigger>
+						<SelectContent>
+							<AccountsTypes />
+						</SelectContent>
+					</Select>
+        </div>
+        <DialogFooter className="sm:justify-start">
+          <Button type="button" variant="secondary" onClick={handleSubmit}>
+           	Создать
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+	)
+}
+
+
 const AccountsTypes = () => {
 	return (
 		<SelectGroup>
 			{ accountsTypes.map((accountType, index) =>
 				<SelectItem
-					value={accountType.name}
+					value={String(index)}
 					key={index}
 				>{accountType.name}</SelectItem>
 			)}
