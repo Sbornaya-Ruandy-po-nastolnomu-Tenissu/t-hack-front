@@ -2,8 +2,10 @@ import { create } from "zustand"
 import Cookies from "js-cookie"
 
 type User = {
-	login: string,
-	email:string,
+	id: number,
+	gender?: "MALE" | "FEMALE",
+	age?: number,
+	income?: number 
 }
 
 type UserState = {

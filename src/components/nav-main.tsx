@@ -17,6 +17,10 @@ type Props = {
 export async function NavMain({items}: { items: Props[] }) {
   return (
     <SidebarGroup>
+    	
+    	
+    
+    	
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
           {items.map((item, index) => <ListItem item={item} key={index}/>)}

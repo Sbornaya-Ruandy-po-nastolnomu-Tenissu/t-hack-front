@@ -75,7 +75,7 @@ const DonutChart = ({ className }: { className?: string }) => {
 	const total = useMemo(() => String(chartData.reduce((acc, curr) => acc + curr.amount, 0)), [])
 	const monthNumber = useMemo(() => new Date().getMonth(), [])
 	
-	let rateSize = 1.7
+	let rateSize = 2
 	if (total.length > 5) { rateSize = 1.2 }
 	
   return (

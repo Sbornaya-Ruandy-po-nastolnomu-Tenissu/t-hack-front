@@ -32,7 +32,12 @@ import { userStore } from "@/entities/user"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
-	const user = userStore.getState().user 
+	const {user, logout} = userStore.getState()
+	
+	const handleLogout = () => {
+		logout()
+		window.location.reload()
+	}
 
 	if (!user) return (
 		<SidebarMenu>
@@ -89,9 +94,9 @@ export function NavUser() {
                 <AvatarFallback className="rounded-lg">T</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.login}</span>
+                <span className="truncate font-medium">{user.id}</span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
+                  {user.id}
                 </span>
               </div>
               <IconDotsVertical className="ml-auto size-4" />
@@ -110,9 +115,9 @@ export function NavUser() {
                   <AvatarFallback className="rounded-lg">T</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.login}</span>
+                  <span className="truncate font-medium">{user.id}</span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
+                    {user.id}
                   </span>
                 </div>
               </div>
@@ -128,7 +133,7 @@ export function NavUser() {
               
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
               <IconLogout />
               Log out
             </DropdownMenuItem>

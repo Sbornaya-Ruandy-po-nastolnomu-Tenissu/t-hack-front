@@ -1,6 +1,6 @@
 import axios from "axios"
 import Cookies from "js-cookie"
-export var API_URL = "http://localhost:8080"
+export var API_URL = "http://192.168.228.8:8080"
 
 type Responce = {
 	endpoint: string,
