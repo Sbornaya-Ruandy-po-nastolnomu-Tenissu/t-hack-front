@@ -39,7 +39,7 @@ function genColor(n: number) {
 const colors = genColor(5)
 
 const chartData = [
-  { rate: "Дринкит", amount: 2700, fill: colors[0] },
+  { rate: "Дринкит", amount: 270, fill: colors[0] },
   { rate: "Вкусно и точка", amount: 200, fill: colors[1] },
   { rate: "Т банк", amount: 287, fill: colors[2] },
   { rate: "Сбер", amount: 173, fill: colors[3] },
@@ -75,7 +75,7 @@ const DonutChart = ({ className }: { className?: string }) => {
 	const total = useMemo(() => String(chartData.reduce((acc, curr) => acc + curr.amount, 0)), [])
 	const monthNumber = useMemo(() => new Date().getMonth(), [])
 	
-	let rateSize = 2
+	let rateSize = 1.8
 	if (total.length > 5) { rateSize = 1.2 }
 	
   return (
@@ -113,7 +113,8 @@ const DonutChart = ({ className }: { className?: string }) => {
                         <tspan
 													x={viewBox.cx}
 													y={viewBox.cy}
-													className={`fill-foreground font-bold text-[${rateSize}rem]`}
+													className={"fill-foreground font-bold"}
+													style={{fontSize: `${rateSize}rem`}}
                         >
                           {total.toLocaleString()}
                         </tspan>

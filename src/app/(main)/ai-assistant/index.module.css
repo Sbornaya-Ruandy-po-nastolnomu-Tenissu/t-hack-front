@@ -24,7 +24,6 @@
 .chat > ul > li {
 	display: flex;
 	height: fit-content;
-	overflow: hidden;
 	word-break: keep-all;
 }
 

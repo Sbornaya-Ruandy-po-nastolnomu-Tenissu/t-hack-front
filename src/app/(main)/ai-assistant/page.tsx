@@ -5,9 +5,7 @@ import { AiInput } from "@/widgets/ai-assistant";
 import { useState } from "react";
 
 const AssistantPage = () => {
-	const [msgs, setMsgs] = useState<string[]>([
-		"привет хочу сделать большую покупку, стоит ли мне брать телевизор в рассрочку", "hello i'm your AI assistant я не могу тебе помочь с этим вопросом", "pensil"
-	])
+	const [msgs, setMsgs] = useState<string[]>([])
 	
 	const changeMsg = (value: string) => {
 		setMsgs(prev => prev.concat(value))

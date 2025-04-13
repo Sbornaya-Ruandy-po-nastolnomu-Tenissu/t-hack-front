@@ -53,27 +53,27 @@ export function LoginForm({
       </div>
       <div className="grid gap-6">
         <div className="grid gap-3">
-          <Label htmlFor="email">Email</Label>
-					<Input id="email" type="email" placeholder="m@example.com" required onChange={changeEmail} value={email}/>
+          <Label htmlFor="email">Логин</Label>
+					<Input id="email" placeholder="m@example.com" required onChange={changeEmail} value={email}/>
         </div>
         <div className="grid gap-3">
           <div className="flex items-center">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Пароль</Label>
           </div>
 					<Input id="password" type="password" required value={password} onChange={changePassword}/>
         </div>
 				<Button className="w-full cursor-pointer" type={"button"} onClick={handleSubmit}>
-					{ mode === "sign-up" ? "Sign up" : "Sign in"}
+					{ mode === "sign-up" ? "Зарегистрироваться" : "Войти"}
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">
-						{ mode === "sign-up" ? "Have an accaunt?" : "Don't have an accaunt?"}
+						{ mode === "sign-up" ? "Есть аккаунт?" : "Ещё нет аккаунта?"}
           </span>
         </div>
       </div>
       <div className="text-center text-sm" onClick={changeMode}>
 				<span className="underline underline-offset-4 cursor-pointer select-none">
-					{ mode === "sign-up" ? "Sign In" : "Sign Up"}
+					{ mode === "sign-up" ? "Зарегистрироваться" : "Войти"}
         </span>
       </div>
     </form>

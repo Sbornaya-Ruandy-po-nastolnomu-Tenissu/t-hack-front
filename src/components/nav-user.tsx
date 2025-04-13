@@ -29,17 +29,37 @@ import {
 } from "@/components/ui/sidebar"
 import Link from "next/link"
 import { userStore } from "@/entities/user"
+import { useEffect, useState } from "react"
+import Cookies from "js-cookie"
+import httpClient from "@/shared/api/httpClient"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
-	const {user, logout} = userStore.getState()
+	const {user, logout, login} = userStore.getState()
+  const [userData, setUserData] = useState(user)
 	
 	const handleLogout = () => {
 		logout()
-		window.location.reload()
+		setUserData(null)
 	}
+	
+	useEffect(() => {
+		const token = Cookies.get("token")
+		if (!user && !!token) {
+			(async () => {
+				try {
+					const { data } = await httpClient.get("/auth/me")
+					const { user } = data
+					login(user, token)
+					setUserData(user)
+				} catch (e) {
+					Cookies.remove("token")
+				}
+			})()
+		}
+	}, [])
 
-	if (!user) return (
+	if (!userData) return (
 		<SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
@@ -94,9 +114,9 @@ export function NavUser() {
                 <AvatarFallback className="rounded-lg">T</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.id}</span>
+                <span className="truncate font-medium">{userData.id}</span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {user.id}
+                  {userData.id}
                 </span>
               </div>
               <IconDotsVertical className="ml-auto size-4" />
@@ -115,9 +135,9 @@ export function NavUser() {
                   <AvatarFallback className="rounded-lg">T</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.id}</span>
+                  <span className="truncate font-medium">{userData.id}</span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {user.id}
+                    {userData.id}
                   </span>
                 </div>
               </div>
