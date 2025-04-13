@@ -78,12 +78,14 @@ const AddAccount = ({ children }: { children: React.ReactNode}) => {
 			toast.error("Все поля обязательные")
 			return
 		}
+		const selected = accountsTypes[Number(selectAccount)]
 		
-		console.log(selectAccount)
 		const res = await httpClient.post("/accounts/create", {
+			type: selected.parent_code,
+			subtype: selected.code,
+			name: selected.name,
+			balance: Number(balance)
 		})
-		
-		
 	}
 	
 	return (

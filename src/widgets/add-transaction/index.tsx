@@ -68,7 +68,6 @@ const AddTransaction = ({ children }: { children: React.ReactNode}) => {
           <DialogTitle>Создание транзакции</DialogTitle>
         </DialogHeader>
         <div className="flex items-center space-x-2">
-        	<Input placeholder={"Введите сумму"} required value={amount} onChange={(e: any) => setAmount(e.target.value)}/>
         	<Input placeholder={"Введите категорию"} required value={category} onChange={(e: any) => setCategory(e.target.value)}/>
         	<Input placeholder={"Введите кэшбэк"} required value={cashback} onChange={(e: any) => setCashback(e.target.value)}/>
 					{ (data === undefined || data.length === 0) ? 
@@ -90,6 +89,7 @@ const AddTransaction = ({ children }: { children: React.ReactNode}) => {
 						</Select>) : null
 					}
         </div>
+       	<Input placeholder={"Введите сумму"} required value={amount} onChange={(e: any) => setAmount(e.target.value)}/>
         <DialogFooter className="sm:justify-start">
           <Button type="button" variant="secondary" onClick={handleSubmit}>
            	Создать
