@@ -45,10 +45,10 @@ export function LoginForm({
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
-				<h1 className="text-2xl font-bold">{ mode === "sign-in" ? "Log in to your account" : "Register new account" }</h1>
+				<h1 className="text-2xl font-bold">{ mode === "sign-in" ? "Войти в аккаунт" : "Зарегистрировать новый аккаунт" }</h1>
         <p className="text-muted-foreground text-sm text-balance">
-					{ mode === "sign-in" ? "Enter your email below to login to your account" : null}
-					{ mode === "sign-up" ? "Enter your email to register account" : null }
+					{ mode === "sign-in" ? "Введите ваш email ниже, чтобы войти в аккаунт" : null}
+					{ mode === "sign-up" ? "Введите ваш email, чтобы зарегистрировать аккаунт" : null }
         </p>
       </div>
       <div className="grid gap-6">
@@ -73,7 +73,7 @@ export function LoginForm({
       </div>
       <div className="text-center text-sm" onClick={changeMode}>
 				<span className="underline underline-offset-4 cursor-pointer select-none">
-					{ mode === "sign-up" ? "Зарегистрироваться" : "Войти"}
+					{ mode === "sign-up" ? "Войти" : "Зарегистрироваться"}
         </span>
       </div>
     </form>

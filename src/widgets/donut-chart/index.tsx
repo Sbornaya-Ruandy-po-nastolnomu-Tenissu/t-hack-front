@@ -43,7 +43,7 @@ const chartData = [
   { rate: "Вкусно и точка", amount: 200, fill: colors[1] },
   { rate: "Т банк", amount: 287, fill: colors[2] },
   { rate: "Сбер", amount: 173, fill: colors[3] },
-  { rate: "Кокаин", amount: 190, fill: colors[4] },
+  { rate: "Другое", amount: 190, fill: colors[4] },
 ]
 
 const chartConfig = {

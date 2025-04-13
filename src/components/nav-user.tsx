@@ -84,14 +84,14 @@ export function NavUser() {
             <DropdownMenuGroup>
 							<Link href={"/auth/sign-in"}>
 								<DropdownMenuItem>
-                	Sign In
+                	Войти
               	</DropdownMenuItem>
 							</Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             	<Link href={"/auth/sign-up"}>
              		<DropdownMenuItem>
-             			Sign Up
+             			Зарегистрироваться
                </DropdownMenuItem>
              	</Link>
           </DropdownMenuContent>
@@ -147,7 +147,7 @@ export function NavUser() {
             
               <DropdownMenuItem>
                 <IconUserCircle />
-                Account
+                Аккаунт
               </DropdownMenuItem>
             
               
@@ -155,7 +155,7 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
               <IconLogout />
-              Log out
+              Выйти
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
